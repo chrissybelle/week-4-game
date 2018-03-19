@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="assets/css/reset.css" type="text/css" rel="stylesheet">
+    <link href="assets/css/style.css" type="text/css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <title>Sushi Collector</title>
+</head>
+<body>
+
+    <div class="game-container">
+        <div class="header"><h1>Sushi Collector!</h1></div>
+        <div class="goal">
+            <span class="label">Budget:</span>
+            <span id="goalTotal"></span>
+        </div>
+        <div class="total">
+            <span class="label">Total:</span>
+            <span id="playerTotal">$0</span>
+        </div>
+        <div class="sushi">
+            <img id="sushi-1" src="assets/images/sushi-1.png">
+            <img id="sushi-2" src="assets/images/sushi-2.png">
+            <img id="sushi-3" src="assets/images/sushi-3.png">
+            <img id="sushi-4" src="assets/images/sushi-4.png">
+        </div>
+        <div class="scoreboard">
+            <span class="label">Score</span>
+            <span id="feedback"></span>
+            <span class="label">Wins: </span>
+            <span id="scoreboard-wins"></span>
+            <span class="label">Losses: </span>
+            <span id="scoreboard-losses"></span>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="assets/javascript/game.js"></script>
+</html>
