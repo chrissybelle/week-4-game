@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="assets/css/reset.css" type="text/css" rel="stylesheet">
     <link href="assets/css/style.css" type="text/css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Love+Ya+Like+A+Sister" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <title>Sushi Collector</title>
 </head>
@@ -13,6 +14,7 @@
 
     <div class="game-container">
         <div class="header"><h1>Sushi Collector!</h1></div>
+        <div class="instructions">Pusheen the cat is hungry, but she's learning that there ain't no such thing as a free lunch! Help her eat her fill of sushi without exceeding her budget.</div>
         <div class="goal">
             <span class="label">Budget:</span>
             <span id="goalTotal"></span>
@@ -21,6 +23,7 @@
             <span class="label">Total:</span>
             <span id="playerTotal">$0</span>
         </div>
+        <div id="reaction-img"> </div>
         <div class="sushi">
             <img id="sushi-1" src="assets/images/sushi-1.png">
             <img id="sushi-2" src="assets/images/sushi-2.png">
@@ -28,12 +31,12 @@
             <img id="sushi-4" src="assets/images/sushi-4.png">
         </div>
         <div class="scoreboard">
-            <span class="label">Score</span>
-            <span id="feedback"></span>
-            <span class="label">Wins: </span>
-            <span id="scoreboard-wins"></span>
-            <span class="label">Losses: </span>
-            <span id="scoreboard-losses"></span>
+            <div class="label-score">Score</div>
+            <div id="feedback"></div>
+            <div class="label-wins">Wins: </div>
+            <div id="scoreboard-wins"></div>
+            <div class="label-losses">Losses: </div>
+            <div id="scoreboard-losses"></div>
         </div>
     </div>
 </body>

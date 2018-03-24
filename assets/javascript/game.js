@@ -4,16 +4,29 @@ var goalTotal;
 var goalTotalMin = 19;
 var goalTotalMax = 120;
 var playerTotal = 0;
-var differenceFromGoal;// = goalTotal - playerTotal;
+var differenceFromGoal;
+var gameStart = true;
 var wins = 0;
 var losses = 0;
-var sushi1Value;
-var sushi2Value;
-var sushi3Value;
-var sushi4Value;
+var sushiValue1;
+var sushiValue2;
+var sushiValue3;
+var sushiValue4;
 var sushiValueMin = 1;
 var sushiValueMax = 12;
 var sushiPossibleValues = [];
+var imageArrayWinner = [
+    "assets/images/contentcat.gif",
+    "assets/images/dessertcat.gif",
+    "assets/images/food-coma.gif",
+    "assets/images/sushi-win.gif",
+    "assets/images/sushi-win2.gif"
+];
+var imageArrayLoser = [
+    "assets/images/angrycat.gif",
+    "assets/images/feedmecat.gif",
+    "assets/images/sadcat.gif"
+];
 
 // F U N C T I O N S
 //reset game
@@ -21,7 +34,24 @@ function reset() {
     sushiPossibleValues = [];
     randomGoalTotal();
     randomSushiValue();
-    playerTotal=0;
+    playerTotal = 0;
+    $("#playerTotal").text(playerTotal);
+    gameStart = true;
+}
+
+//display and remove image on win/lose
+function resetImg() {
+    $("#reaction-img").html("");
+}
+function winImage() {
+    randomNum = Math.floor(Math.random()*imageArrayWinner.length);
+    $("#reaction-img").html("<img src=" + imageArrayWinner[randomNum] + ">")
+    setTimeout(resetImg, 3000);
+}
+function loseImage() {
+    randomNum = Math.floor(Math.random()*imageArrayLoser.length);
+    $("#reaction-img").html("<img src=" + imageArrayLoser[randomNum] + ">");
+    setTimeout(resetImg, 3000);
 }
 
 //generate and assign random number for the target
@@ -35,80 +65,115 @@ function randomSushiValue() {
     for (var i=0; i < sushiValueMax; i++) {
         sushiPossibleValues[i] = sushiPossibleValues.push(i);
     }
-    sushi1Value = Math.floor(Math.random() * (sushiValueMax - sushiValueMin) + sushiValueMin);
-    sushiPossibleValues.splice(sushiPossibleValues[sushiPossibleValues.indexOf(sushi1Value)-1],1);
-    // console.log(sushi1Value);
     // console.log(sushiPossibleValues);
-    sushi2Value = sushiPossibleValues[Math.floor(Math.random() * sushiPossibleValues.length)];
-    sushiPossibleValues.splice(sushiPossibleValues.indexOf(sushi2Value),1);
-    // console.log(sushi2Value);
-    // console.log(sushiPossibleValues);
-    sushi3Value = sushiPossibleValues[Math.floor(Math.random() * sushiPossibleValues.length)];
-    sushiPossibleValues.splice(sushiPossibleValues.indexOf(sushi3Value),1);
-    // console.log(sushi3Value);
-    // console.log(sushiPossibleValues);
-    sushi4Value = sushiPossibleValues[Math.floor(Math.random() * sushiPossibleValues.length)];
-    // console.log(sushi4Value);
-    // console.log(sushiPossibleValues);
+
+    sushiValue1 = Math.floor(Math.random() * (sushiValueMax - sushiValueMin) + sushiValueMin);
+    sushiPossibleValues.splice(sushiPossibleValues[sushiPossibleValues.indexOf(sushiValue1)-1],1);
+    console.log(sushiValue1);
+    console.log(sushiPossibleValues);
+    sushiValue2 = sushiPossibleValues[Math.floor(Math.random() * sushiPossibleValues.length)];
+    sushiPossibleValues.splice(sushiPossibleValues.indexOf(sushiValue2),1);
+    console.log(sushiValue2);
+    console.log(sushiPossibleValues);
+    sushiValue3 = sushiPossibleValues[Math.floor(Math.random() * sushiPossibleValues.length)];
+    sushiPossibleValues.splice(sushiPossibleValues.indexOf(sushiValue3),1);
+    console.log(sushiValue3);
+    console.log(sushiPossibleValues);
+    sushiValue4 = sushiPossibleValues[Math.floor(Math.random() * sushiPossibleValues.length)];
+    console.log(sushiValue4);
+    console.log(sushiPossibleValues);
+
 }
 
 
 // G A M E P L A Y & E V E N T S
-// playerTotal = 0;
 randomGoalTotal();
 randomSushiValue();
 differenceFromGoal = goalTotal - playerTotal;
 
-// console.log(goalTotal);
-// console.log(playerTotal);
-// console.log(differenceFromGoal);
-//if player total exceeds target, restart game
-if (differenceFromGoal < 0) {
-    reset();
-    losses++;
-    $("#scoreboard-losses").text(losses);
-    alert("You exceeded your budget! Go wash the dishes.. you LOSE");
-} else if (differenceFromGoal === 0) {
-//if player total = target, then restart game and add one to win count
-    reset();
-    wins++;
-    $("#scoreboard-wins").text(wins);
-    alert("Mission accomplished!");
-} else if (differenceFromGoal > 0) {
-//if under target, game proceeds
-    //on click: keep running total of value of clicked items
-    $("#sushi-1").on("click", function() {
-        playerTotal=playerTotal+sushi1Value;
-        $("#playerTotal").text("$"+playerTotal);
-        differenceFromGoal = goalTotal - playerTotal;
-        console.log(differenceFromGoal);
-        // console.log(goalTotal);
-        // console.log(playerTotal);
-    });
-    $("#sushi-2").on("click", function() {
-        playerTotal=playerTotal+sushi2Value;
-        $("#playerTotal").text("$"+playerTotal);
-        differenceFromGoal = goalTotal - playerTotal;
-        console.log(differenceFromGoal);
-    });
-    $("#sushi-3").on("click", function() {
-        playerTotal=playerTotal+sushi3Value;
-        $("#playerTotal").text("$"+playerTotal);
-        differenceFromGoal = goalTotal - playerTotal;
-        console.log(differenceFromGoal);
-    });
-    $("#sushi-4").on("click", function() {
-        playerTotal=playerTotal+sushi4Value;
-        $("#playerTotal").text("$"+playerTotal);
-        differenceFromGoal = goalTotal - playerTotal;
-        console.log(differenceFromGoal);
-    });
+$("#sushi-1").on("click", function() {
+    $(this).attr("value", sushiValue1);
+    playerTotal=playerTotal+sushiValue1;
+    $("#playerTotal").text("$"+playerTotal);
+    differenceFromGoal = goalTotal - playerTotal;
+    gameStart = false;
+    if (differenceFromGoal < 0 && gameStart === false) {
+        reset();
+        losses++;
+        loseImage();
+        $("#feedback").text("Noooo.. you lose!");
+        $("#scoreboard-losses").text(" " + losses);
+    } else if (differenceFromGoal === 0 && gameStart === false) {
+        reset();
+        wins++;
+        winImage();
+        $("#feedback").text("You win!");
+        $("#scoreboard-wins").text("  " + wins);
+    }
+});
 
+$("#sushi-2").on("click", function() {
+    $(this).attr("value", sushiValue2);
+    playerTotal=playerTotal+sushiValue2;
+    $("#playerTotal").text("$"+playerTotal);
+    differenceFromGoal = goalTotal - playerTotal;
+    gameStart=false;
+    if (differenceFromGoal < 0 && gameStart === false) {
+        reset();
+        losses++;
+        loseImage();
+        $("#feedback").text("Noooo.. you lose!");
+        $("#scoreboard-losses").text(" " + losses);
+    } else if (differenceFromGoal === 0 && gameStart === false) {
+        reset();
+        wins++;
+        winImage();
+        $("#feedback").text("You win!");
+        $("#scoreboard-wins").text("  " + wins);
+    }
+});
 
-}
+$("#sushi-3").on("click", function() {
+    $(this).attr("value", sushiValue3);
+    playerTotal=playerTotal+sushiValue3;
+    $("#playerTotal").text("$"+playerTotal);
+    differenceFromGoal = goalTotal - playerTotal;
+    gameStart=false;
+    if (differenceFromGoal < 0 && gameStart === false) {
+        reset();
+        losses++;
+        loseImage();
+        $("#feedback").text("Noooo.. you lose!");
+        $("#scoreboard-losses").text(" " + losses);
+    } else if (differenceFromGoal === 0 && gameStart === false) {
+        reset();
+        wins++;
+        winImage();
+        $("#feedback").text("You win!");
+        $("#scoreboard-wins").text("  " + wins);
+    }
+});
 
+$("#sushi-4").on("click", function() {
+    $(this).attr("value", sushiValue4);
+    playerTotal=playerTotal+sushiValue4;
+    $("#playerTotal").text("$"+playerTotal);
+    differenceFromGoal = goalTotal - playerTotal;
+    gameStart=false;
+    if (differenceFromGoal < 0 && gameStart === false) {
+        reset();
+        losses++;
+        loseImage();
+        $("#feedback").text("Noooo.. you lose!");
+        $("#scoreboard-losses").text(" " + losses);
+    } else if (differenceFromGoal === 0 && gameStart === false) {
+        reset();
+        wins++;
+        winImage();
+        $("#feedback").text("You win!");
+        $("#scoreboard-wins").text("  " + wins);
+    }
+});
 
 
 });
-
-//PROBLEM IS THAT DIFFERENCEFROMGOAL IS SET TO GOALTOTAL
