@@ -82,18 +82,9 @@ function randomSushiValue() {
     sushiValue4 = sushiPossibleValues[Math.floor(Math.random() * sushiPossibleValues.length)];
     console.log(sushiValue4);
     console.log(sushiPossibleValues);
-
 }
 
-
-// G A M E P L A Y & E V E N T S
-randomGoalTotal();
-randomSushiValue();
-differenceFromGoal = goalTotal - playerTotal;
-
-$("#sushi-1").on("click", function() {
-    $(this).attr("value", sushiValue1);
-    playerTotal=playerTotal+sushiValue1;
+function click() {
     $("#playerTotal").text("$"+playerTotal);
     differenceFromGoal = goalTotal - playerTotal;
     gameStart = false;
@@ -110,69 +101,31 @@ $("#sushi-1").on("click", function() {
         $("#feedback").text("You win!");
         $("#scoreboard-wins").text("  " + wins);
     }
+}
+
+// G A M E P L A Y & E V E N T S
+randomGoalTotal();
+randomSushiValue();
+differenceFromGoal = goalTotal - playerTotal;
+
+$("#sushi-1").on("click", function() {
+    playerTotal=playerTotal+sushiValue1;
+    click();
 });
 
 $("#sushi-2").on("click", function() {
-    $(this).attr("value", sushiValue2);
     playerTotal=playerTotal+sushiValue2;
-    $("#playerTotal").text("$"+playerTotal);
-    differenceFromGoal = goalTotal - playerTotal;
-    gameStart=false;
-    if (differenceFromGoal < 0 && gameStart === false) {
-        reset();
-        losses++;
-        loseImage();
-        $("#feedback").text("Noooo.. you lose!");
-        $("#scoreboard-losses").text(" " + losses);
-    } else if (differenceFromGoal === 0 && gameStart === false) {
-        reset();
-        wins++;
-        winImage();
-        $("#feedback").text("You win!");
-        $("#scoreboard-wins").text("  " + wins);
-    }
+    click();
 });
 
 $("#sushi-3").on("click", function() {
-    $(this).attr("value", sushiValue3);
     playerTotal=playerTotal+sushiValue3;
-    $("#playerTotal").text("$"+playerTotal);
-    differenceFromGoal = goalTotal - playerTotal;
-    gameStart=false;
-    if (differenceFromGoal < 0 && gameStart === false) {
-        reset();
-        losses++;
-        loseImage();
-        $("#feedback").text("Noooo.. you lose!");
-        $("#scoreboard-losses").text(" " + losses);
-    } else if (differenceFromGoal === 0 && gameStart === false) {
-        reset();
-        wins++;
-        winImage();
-        $("#feedback").text("You win!");
-        $("#scoreboard-wins").text("  " + wins);
-    }
+    click();
 });
 
 $("#sushi-4").on("click", function() {
-    $(this).attr("value", sushiValue4);
     playerTotal=playerTotal+sushiValue4;
-    $("#playerTotal").text("$"+playerTotal);
-    differenceFromGoal = goalTotal - playerTotal;
-    gameStart=false;
-    if (differenceFromGoal < 0 && gameStart === false) {
-        reset();
-        losses++;
-        loseImage();
-        $("#feedback").text("Noooo.. you lose!");
-        $("#scoreboard-losses").text(" " + losses);
-    } else if (differenceFromGoal === 0 && gameStart === false) {
-        reset();
-        wins++;
-        winImage();
-        $("#feedback").text("You win!");
-        $("#scoreboard-wins").text("  " + wins);
-    }
+    click();
 });
 
 
